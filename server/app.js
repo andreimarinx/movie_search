@@ -18,9 +18,9 @@ app.use(express.json());
 //Limit number of requests
 const limiter = rateLimit({
   windowMs: 60 * 60 * 1000, // 1 hour
-  max: 100,
-  standardHeaders: true, // sets RateLimit-* headers
-  legacyHeaders: false,  // disables X-RateLimit-* headers
+  max: 100, // 100 requestes / ip / window
+  standardHeaders: true, 
+  legacyHeaders: false,  
   message: {
     status: 429,
     error: 'Too many requests, please try again after an hour'
