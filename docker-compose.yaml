@@ -1,6 +1,6 @@
 version: '3.8'
-services:
 
+services:
   redis:
     image: redis:7-alpine
     container_name: redis
@@ -18,7 +18,18 @@ services:
       - REDIS_URL=${REDIS_URL}
       - OMDB_API_KEY=${OMDB_API_KEY}
       - API_KEY=${API_KEY}
-
     depends_on:
       - redis
 
+  frontend:
+    build:
+      context: ./frontend
+    container_name: movie-frontend
+    ports:
+      - "5173:80"
+    environment:
+      - API_URL=${API_URL}
+      - API_KEY=${API_KEY}
+ 
+    depends_on:
+      - server
