@@ -1,4 +1,4 @@
-// server/src/services/auth.js
+// server/services/auth.js
 
 function checkApiKey(req, res, next) {
   const key = req.header("x-api-key");

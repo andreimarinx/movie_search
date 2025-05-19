@@ -1,4 +1,4 @@
-// server/src/routes/search.js
+// server/routes/search.js
 
 const express = require("express");
 const router = express.Router();

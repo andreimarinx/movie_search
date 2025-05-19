@@ -1,4 +1,4 @@
-// server/src/services/omdb.js
+// server/services/omdb.js
 
 const axios = require("axios");
 

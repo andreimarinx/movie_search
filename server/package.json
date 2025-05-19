@@ -1,10 +1,12 @@
 {
-  "name": "server",
+  "name": "movie-search-server",
   "version": "1.0.0",
   "description": "movie search server",
   "main": "server.js",
   "scripts": {
-    "devStart": "nodemon server.js"
+    "start": "node server.js",
+    "devStart": "nodemon server.js",
+    "test": "jest"
   },
   "author": "",
   "license": "ISC",
@@ -15,9 +17,11 @@
     "express-rate-limit": "^7.5.0",
     "express-validator": "^7.2.1",
     "helmet": "^8.1.0",
-    "redis": "^5.0.1"
+    "redis": "^5.0.1",
+    "supertest": "^7.1.1"
   },
   "devDependencies": {
+    "jest": "^29.7.0",
     "nodemon": "^3.1.10"
   }
 }

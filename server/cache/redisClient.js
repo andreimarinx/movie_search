@@ -1,4 +1,4 @@
-// server/src/cache/redisClient.js
+// server/cache/redisClient.js
 
 const { createClient } = require("redis");
 
@@ -7,9 +7,12 @@ const redisClient = createClient({ url: REDIS_URL });
 
 redisClient.on("error", (err) => console.error("Redis Client Error", err));
 
-redisClient
-  .connect()
-  .then(() => console.log("Connected to Redis"))
-  .catch((err) => console.error("Failed to connect to Redis:", err));
+// only auto-connect when not in test
+if (process.env.NODE_ENV !== "test") {
+  (async () => {
+    await redisClient.connect();
+    console.log("Connected to Redis");
+  })();
+}
 
 module.exports = redisClient;
