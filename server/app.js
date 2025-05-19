@@ -3,6 +3,7 @@
 require("dotenv").config();
 
 const express = require("express");
+const cors = require("cors");
 const helmet = require("helmet");
 const rateLimit = require("express-rate-limit");
 
@@ -12,19 +13,27 @@ const searchRouter = require("./routes/search");
 const app = express();
 
 //Middleware
+//Cros
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    methods: ["GET"],
+    allowedHeaders: ["Content-Type", "x-api-key"],
+  })
+);
 //Standatd HTTP headers
 app.use(helmet());
 app.use(express.json());
 //Limit number of requests
 const limiter = rateLimit({
   windowMs: 60 * 60 * 1000, // 1 hour
-  max: 100, // 100 requestes / ip / window
-  standardHeaders: true, 
-  legacyHeaders: false,  
+  max: 100000, // 100 requestes / ip / window
+  standardHeaders: true,
+  legacyHeaders: false,
   message: {
     status: 429,
-    error: 'Too many requests, please try again after an hour'
-  }
+    error: "Too many requests, please try again after an hour",
+  },
 });
 app.use(limiter);
 
@@ -36,4 +45,4 @@ app.get("/api/health", (req, res) => {
   res.json({ status: "ok", timestamp: Date.now() });
 });
 
-module.exports = app
+module.exports = app;
