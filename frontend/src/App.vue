@@ -43,12 +43,24 @@ function onResults({ data, isLoading, isError, error: err }) {
   error.value = isError ? err : null;
 
   if (!isLoading && !isError) {
+    //If the query has changed, reset page to 1 and re-search
+    if (searchBar.value.q !== lastQuery.value) {
+      page.value = 1;
+      lastQuery.value = searchBar.value.q;
+      // Only re-search if we weren't already on page 1
+      if (page.value !== data.page) {
+        nextTick(() => {
+          searchBar.value.performSearch();
+        });
+        return;
+      }
+    }
+
     movies.value = Array.isArray(data.results) ? data.results : [];
+    totalPages.value = data.totalPages || 1;
     if (typeof data.page === "number" && data.page > 0) {
       page.value = data.page;
     }
-    totalPages.value = data.totalPages || 1;
-    //Save the last query from SearchBar
     lastQuery.value = searchBar.value.q;
   }
 }
