@@ -1,3 +1,5 @@
+<!-- client/src/components/SearchBar.vue -->
+
 <template>
   <form @submit.prevent="performSearch" class="search-form">
     <input v-model="q" type="text" placeholder="Search movies…" required />
@@ -31,13 +33,13 @@ async function performSearch() {
   error.value = null;
 
   try {
-    const response = await axios.get("http://localhost:3000/search", {
+    const response = await axios.get(`${import.meta.env.VITE_API_URL}/search`, {
       params: {
         title: q.value,
         page: props.page,
       },
       headers: {
-        "x-api-key": "568bf22fs", //TODO replace from .env
+        "x-api-key": import.meta.env.VITE_API_KEY,
       },
     });
 
@@ -71,8 +73,18 @@ defineExpose({ performSearch, q });
 }
 
 input {
+  min-width: 400px;
   flex: 1;
-  padding: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid gray;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+input:focus {
+  outline: none;
+  border-color: orange; /* blue-500 */
+  box-shadow: 0 0 0 3px rgba(246, 140, 59, 0.2); /* subtle blue glow */
 }
 
 button {
