@@ -2,13 +2,14 @@
   "name": "server",
   "version": "1.0.0",
   "description": "movie search server",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "devStart": "nodemon index.js"
+    "devStart": "nodemon server.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^16.5.0",
     "express": "^5.1.0"
   },
   "devDependencies": {
