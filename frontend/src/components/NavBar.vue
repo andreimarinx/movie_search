@@ -20,7 +20,7 @@
   color: white;
   padding: 0.75rem 1.25rem;
   border-radius: 8px;
-  width: 100vw;
+  width: 100%;
   position: absolute;
   top: 0;
   left: 0;
