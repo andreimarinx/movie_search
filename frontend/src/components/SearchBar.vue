@@ -105,7 +105,6 @@ button:disabled {
 
 @media (max-width: 600px) {
   .search-form {
-    flex-direction: column;
     gap: 0.75rem;
   }
   input,
