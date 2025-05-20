@@ -3,29 +3,29 @@
 <template>
   <div class="health-widget" :class="{ online: isOnline, offline: !isOnline }">
     API Status:
-    <span>{{ isOnline ? '🟢 Online' : '🔴 Offline' }}</span>
+    <span>{{ isOnline ? "🟢 Online" : "🔴 Offline" }}</span>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
-import axios from 'axios'
+import { ref, onMounted } from "vue";
+import axios from "axios";
 
-const isOnline = ref(false)
+const isOnline = ref(false);
 
 async function checkHealth() {
   try {
-    const res = await axios.get('http://localhost:3000/api/health')
-    isOnline.value = res.status === 200
+    const res = await axios.get("http://localhost:3000/api/health");
+    isOnline.value = res.status === 200;
   } catch {
-    isOnline.value = false
+    isOnline.value = false;
   }
 }
 
 onMounted(() => {
-  checkHealth()
-  setInterval(checkHealth, 30000)
-})
+  checkHealth();
+  setInterval(checkHealth, 30000);
+});
 </script>
 
 <style scoped>
@@ -34,7 +34,6 @@ onMounted(() => {
   border: 1px solid #ccc;
   border-radius: 8px;
   font-weight: bold;
-  margin-bottom: 1rem;
   display: inline-block;
 }
 

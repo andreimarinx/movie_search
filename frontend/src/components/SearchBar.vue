@@ -70,11 +70,13 @@ defineExpose({ performSearch, q });
 .search-form {
   display: flex;
   gap: 0.5rem;
+  flex-wrap: wrap; 
+  align-items: center;
 }
 
 input {
-  min-width: 400px;
   flex: 1;
+  min-width: 0; 
   padding: 0.5rem 0.75rem;
   border: 1px solid gray;
   border-radius: 6px;
@@ -83,11 +85,32 @@ input {
 }
 input:focus {
   outline: none;
-  border-color: orange; /* blue-500 */
-  box-shadow: 0 0 0 3px rgba(246, 140, 59, 0.2); /* subtle blue glow */
+  border-color: orange;
+  box-shadow: 0 0 0 3px rgba(246, 140, 59, 0.2);
 }
 
 button {
   padding: 0.5rem 1rem;
+  white-space: nowrap;
+  border-radius: 6px;
+  color: white;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+}
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@media (max-width: 600px) {
+  .search-form {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  input,
+  button {
+    width: 100%;
+  }
 }
 </style>

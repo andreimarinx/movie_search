@@ -48,7 +48,7 @@ function onResults({ data, isLoading, isError, error: err }) {
   error.value = isError ? err : null;
 
   if (!isLoading && !isError) {
-    hasSearched.value = true; 
+    hasSearched.value = true;
     //Reset quesry page to 1 on new search
     if (searchBar.value.q !== lastQuery.value) {
       page.value = 1;
@@ -75,7 +75,7 @@ function prevPage() {
   if (page.value > 1) {
     page.value--;
     searchBar.value.q = lastQuery.value;
-    loading.value = true; 
+    loading.value = true;
     nextTick(() => {
       searchBar.value.performSearch();
     });
@@ -86,7 +86,7 @@ function nextPage() {
   if (page.value < totalPages.value) {
     page.value++;
     searchBar.value.q = lastQuery.value;
-    loading.value = true; 
+    loading.value = true;
     nextTick(() => {
       searchBar.value.performSearch();
     });
@@ -111,7 +111,7 @@ function nextPage() {
 
 .grid {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1rem;
   margin-top: 1rem;
 }
@@ -150,5 +150,17 @@ button:disabled {
   text-align: center;
   font-size: 1.2rem;
   color: #e2e2e2;
+}
+
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 </style>
