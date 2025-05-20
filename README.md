@@ -80,6 +80,11 @@ docker-compose up --build
 - Frontend: [http://localhost:5173](http://localhost:5173)  
 - Backend: [http://localhost:3000/search?title=batman](http://localhost:3000/search?title=batman)
 
+Replace localhost with server public ip
+```bash
+find . -type f -exec perl -pi -e 's/localhost/SERVER_PUBLIC_IP/g' {} +
+```
+
 ---
 
 ## 🔒 API Security
