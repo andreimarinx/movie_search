@@ -2,6 +2,8 @@
 
 A full-stack app to search movies via the OMDb API, using server-side caching, rate limiting, and a Vue 3 frontend.
 
+### Demo: https://movie-search.andrei-marin.com/
+
 ---
 
 ## 🧱 Stack
